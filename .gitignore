@@ -1,0 +1,83 @@
+# Android Studio specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build output
+/build/
+*/build/
+
+# Local configuration file (store sensitive or local environment configs here)
+local.properties
+
+# Gradle-specific files
+.gradle/
+build/
+**/build/
+!gradle-wrapper.jar
+
+# JetBrains-specific files
+.idea/
+*.iml
+*.log
+*.hprof
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/dictionaries
+.idea/httpRequests
+
+# Miscellaneous
+.DS_Store
+*.apk
+*.ap_
+*.keystore
+
+# Generated files
+*.class
+*.dex
+*.jar
+*.war
+*.ear
+*.class
+*.so
+*.obj
+*.o
+*.a
+*.hprof
+*.lib
+*.pyc
+*.pyo
+*.ipynb_checkpoints
+*.rbc
+*.sass-cache
+*.class
+*.tlog
+*.idb
+
+# OS-specific files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.swp
+*.swo
+*~
+*.tmp
+
+# Android-specific exclusions
+.idea/
+*/.idea/
+*/gradle-app/build/
+*/gradle-out/build/
+*/app/build/
+**/.cxx/
+.gradle/
+
+# Node.js-specific exclusions (if using React Native or other Node-based tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+.eslintcache

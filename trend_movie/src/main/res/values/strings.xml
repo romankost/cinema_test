@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_message">Connection error</string>
+    <string name="exception_message">Server is not responding! Try again later</string>
+</resources>
