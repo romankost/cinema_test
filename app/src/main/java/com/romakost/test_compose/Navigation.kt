@@ -25,7 +25,7 @@ import com.romakost.core.BottomNavigationItem
 import com.romakost.profile.navigateToProfile
 import com.romakost.trend_movie.navigateToMovieDetail
 import com.romakost.trend_movie.navigateToTrendMovie
-import com.romakost.tv_show.navigateToFavorites
+import com.romakost.favorites.navigateToFavorites
 
 @Composable
 fun BottomNavigation(navController: NavController) {

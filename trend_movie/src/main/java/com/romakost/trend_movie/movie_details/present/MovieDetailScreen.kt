@@ -29,7 +29,7 @@ import com.romakost.core.ui.theme.CinemaAppTheme
 import com.romakost.trend_movie.movie_details.data.MovieDetailsArgs
 import com.romakost.trend_movie.movie_details.di.ViewModelFactoryProvider
 import com.romakost.trend_movie.movie_details.domain.MovieDetailsVM
-import com.romakost.trend_movie.shared.ui.MovieThumbNail
+import com.romakost.core.ui.MovieThumbNail
 import com.romakost.trend_movie.shared.ui.RatingView
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.Flow

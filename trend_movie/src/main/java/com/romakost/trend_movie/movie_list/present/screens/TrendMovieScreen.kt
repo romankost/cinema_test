@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.romakost.trend_movie.movie_list.data.MovieData
+import com.romakost.trend_movie.movie_list.present.MovieItemViewState
 import com.romakost.trend_movie.movie_list.present.MovieListEffect
 import com.romakost.trend_movie.movie_list.present.MovieListEvent
 import com.romakost.trend_movie.movie_list.present.MovieListState
@@ -46,7 +47,7 @@ fun MovieListScreen(
 
 @Composable
 private fun ContentState(
-    items: List<MovieData>,
+    items: List<MovieItemViewState>,
     onEvent: (MovieListEvent) -> Unit
 ) {
     LazyColumn(
@@ -54,7 +55,11 @@ private fun ContentState(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        items(count = items.size) {
+        items(
+            count = items.size,
+            //TODO: for cutting corners use title as unique key
+            key = {items[it].title + items[it].isLiked}
+        ) {
             MovieItemView(
                 items[it],
                 onEvent

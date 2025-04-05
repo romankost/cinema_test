@@ -10,7 +10,7 @@ interface CinemaRepo {
     suspend fun fetchMovie(): Flow<NetworkResult<TrendingMovieResponse>>
 }
 
-class CinemaRepoImpl @Inject constructor(
+class MovieRepoImpl @Inject constructor(
     private val service: MovieService
 ) : CinemaRepo {
 

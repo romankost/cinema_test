@@ -1,4 +1,4 @@
-package com.romakost.trend_movie.shared.ui
+package com.romakost.core.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,7 +9,9 @@ import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.romakost.network.R
-import com.romakost.trend_movie.movie_list.present.ui.IMAGE_URL
+
+
+const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
 
 @Composable
 fun MovieThumbNail(url: String, desc: String, modifier: Modifier = Modifier) {
