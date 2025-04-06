@@ -10,5 +10,5 @@ fun TrendingMovieData.toMovieItemViewState(isLiked: Boolean = false) =
         posterPath = posterPath,
         voteAverage = voteAverage.toOneSymbolSting(),
         releaseDate = releaseDate ?: "",
-        isLiked =  isLiked
+        isLiked = isLiked
     )

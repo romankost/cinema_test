@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.romakost.core.BottomNavigationItem
 import com.romakost.favorites.domain.FavoritesVM
-import com.romakost.favorites.present.FavoritesScreen
+import com.romakost.favorites.present.screen.FavoritesScreen
 
 @OptIn(InternalComposeApi::class)
 fun NavGraphBuilder.navigateToFavorites() {

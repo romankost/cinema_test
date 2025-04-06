@@ -1,15 +1,15 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
-//    id ("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.romakost.tv_show"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -44,30 +44,30 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
 }
 
 dependencies {
-    implementation(project (":core"))
+    implementation(project(":core"))
 
-    //retrofit
+    // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
     // coroutine
     implementation(libs.kotlinx.coroutines.android)
 
-    //dagger-hilt
+    // dagger-hilt
     implementation(libs.hilt.android)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.hilt.android.compiler)
     kapt(libs.hilt.compiler)
-    implementation (libs.lifecycle.extensions)
+    implementation(libs.lifecycle.extensions)
     implementation(libs.hilt.navigation.compose)
 
-    //room
-    implementation ("androidx.room:room-runtime:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
+    // room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // compose
     implementation(libs.navigation.compose)

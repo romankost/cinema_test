@@ -80,5 +80,4 @@ class ResultCall<T : Any>(
     override fun request(): Request = delegate.request()
 
     override fun timeout(): Timeout = delegate.timeout()
-
 }

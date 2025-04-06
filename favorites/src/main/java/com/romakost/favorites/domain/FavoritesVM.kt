@@ -3,7 +3,7 @@ package com.romakost.favorites.domain
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romakost.favorites.data.FavoriteMovieRepo
-import com.romakost.favorites.data.db.Favorite
+import com.romakost.favorites.data.db.FavoritesEntity
 import com.romakost.favorites.present.FavoritesEvent
 import com.romakost.favorites.present.FavoritesState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,13 +12,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
 
 @HiltViewModel
 class FavoritesVM @Inject constructor(
     private val favoritesRepo: FavoriteMovieRepo
-): ViewModel() {
+) : ViewModel() {
     private val state = MutableStateFlow(FavoritesState.initState)
     val favoritesScreenState = state.asStateFlow()
 
@@ -31,13 +30,13 @@ class FavoritesVM @Inject constructor(
     }
 
     fun event(event: FavoritesEvent) {
-        when(event) {
+        when (event) {
             is FavoritesEvent.OnMovieItemClicked -> handleDeleteMovieFromFavorites(event.favoriteData)
             is FavoritesEvent.ClearAll -> handleClearAll()
         }
     }
 
-    private fun pushFavoritesState(favorites: List<Favorite>) {
+    private fun pushFavoritesState(favorites: List<FavoritesEntity>) {
         state.tryEmit(state.value.copy(favorites = favorites))
     }
 
@@ -49,7 +48,7 @@ class FavoritesVM @Inject constructor(
         }
     }
 
-    private fun handleDeleteMovieFromFavorites(favorite: Favorite) {
+    private fun handleDeleteMovieFromFavorites(favorite: FavoritesEntity) {
         viewModelScope.launch {
             favoritesRepo.deleteFavoritesByMovieName(favorite.movieName)
         }

@@ -1,13 +1,12 @@
 package com.romakost.favorites.present
 
-import com.romakost.favorites.data.db.Favorite
+import com.romakost.favorites.data.db.FavoritesEntity
 
-data class FavoritesState (
-    val favorites: List<Favorite> = emptyList(),
-    val isLoading: Boolean = true,
+data class FavoritesState(
+    val favorites: List<FavoritesEntity> = emptyList(),
     val error: String = ""
 ) {
-    val isError = error.isNotEmpty()
+    val isNoFavorite = favorites.isEmpty()
 
     companion object {
         val initState = FavoritesState()

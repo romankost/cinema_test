@@ -10,12 +10,10 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import com.romakost.network.R
 
-
 const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
 
 @Composable
 fun MovieThumbNail(url: String, desc: String, modifier: Modifier = Modifier) {
-
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(IMAGE_URL + url)

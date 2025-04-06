@@ -25,11 +25,13 @@ object AppModule {
             "room_database"
         ).build()
     }
+
     @Provides
     @Singleton
-    fun provideDao(appDatabase: FavoritesDatabase) : FavoritesDao {
+    fun provideDao(appDatabase: FavoritesDatabase): FavoritesDao {
         return appDatabase.favoritesDao()
     }
+
     @Provides
     @Singleton
     fun provideTaskRepository(favoritesDao: FavoritesDao): FavoriteMovieRepo {

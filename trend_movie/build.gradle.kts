@@ -1,10 +1,11 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "2.1.0"
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -13,7 +14,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,7 +22,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,6 +39,12 @@ android {
         compose = true
         buildConfig = true
     }
+
+    ktlint {
+        version.set("0.48.0")
+        android.set(true)
+        enableExperimentalRules.set(false)
+    }
 }
 
 dependencies {
@@ -48,20 +54,20 @@ dependencies {
 
     implementation(libs.jetbrains.kotlinx.serialization.json)
 
-    //retrofit
+    // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
     // coroutine
     implementation(libs.kotlinx.coroutines.android)
 
-    //dagger-hilt
+    // dagger-hilt
     implementation(libs.hilt.android)
     debugImplementation(libs.ui.tooling)
     kapt(libs.hilt.android.compiler)
     kapt(libs.hilt.compiler)
 
-    implementation (libs.lifecycle.extensions)
+    implementation(libs.lifecycle.extensions)
     implementation(libs.hilt.navigation.compose)
 
     // compose

@@ -25,17 +25,22 @@ materialIconsCoreAndroid = "1.7.6"
 navigationCompose = "2.8.5"
 pagingCompose = "3.3.5"
 retrofit = "2.9.0"
+roomCompiler = "2.6.1"
+roomRuntime = "2.6.1"
 uiAndroid = "1.7.6"
 uiTooling = "1.7.6"
 uiToolingPreview = "1.8.0-alpha07"
 compose = "2.0.20"
 hiltDagger = "2.48.1"
+uiToolingVersion = "1.7.8"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom-v20241100 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomCompiler" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "uiToolingPreview" }
 androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
@@ -63,8 +68,10 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 material-icons-core-android = { module = "androidx.compose.material:material-icons-core-android", version.ref = "materialIconsCoreAndroid" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 ui-android = { module = "androidx.compose.ui:ui-android", version.ref = "uiAndroid" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiToolingVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
