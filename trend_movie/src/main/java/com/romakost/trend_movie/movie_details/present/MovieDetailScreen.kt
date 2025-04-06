@@ -25,11 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.romakost.core.ui.MovieThumbNail
 import com.romakost.core.ui.theme.CinemaAppTheme
 import com.romakost.trend_movie.movie_details.data.MovieDetailsArgs
 import com.romakost.trend_movie.movie_details.di.ViewModelFactoryProvider
 import com.romakost.trend_movie.movie_details.domain.MovieDetailsVM
-import com.romakost.trend_movie.shared.ui.MovieThumbNail
 import com.romakost.trend_movie.shared.ui.RatingView
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.Flow
@@ -116,11 +116,11 @@ fun MovieDetailPreview() {
     val mockArgs = MovieDetailsArgs(
         name = "Dirty Angels",
         description = "During the United States' 2021 withdrawal from Afghanistan, " +
-                "a group of female soldiers posing as medical relief are sent back in to" +
-                " rescue a group of kidnapped teenagers caught between ISIS and the Taliban.",
+            "a group of female soldiers posing as medical relief are sent back in to" +
+            " rescue a group of kidnapped teenagers caught between ISIS and the Taliban.",
         posterUrl = "/5HJqjCTcaE1TFwnNh3Dn21be2es.jpg",
         releaseDate = "2024-12-11",
-        voteAverage = "7.0",
+        voteAverage = "7.0"
     )
 
     val mockNavController = NavController(LocalContext.current)
@@ -129,5 +129,3 @@ fun MovieDetailPreview() {
         MovieDetail(mockNavController, mockArgs)
     }
 }
-
-

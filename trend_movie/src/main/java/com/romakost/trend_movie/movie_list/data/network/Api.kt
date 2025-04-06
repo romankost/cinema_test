@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface TMDBApi {
     @GET("trending/movie/day?language=en-US")
     suspend fun getTrendingMovie(
-       @Query("page") page: Int = 1
+        @Query("page") page: Int = 1
     ): NetworkResult<TrendingMovieResponse>
 }

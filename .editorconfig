@@ -1,0 +1,13 @@
+root = true
+
+[*.{kt,kts}]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+insert_final_newline = true
+
+# ✅ Correct way to disable rules in ktlint 0.50+
+ktlint_disabled_rules = package-name,function-name,property-name,class-name,constant-name,parameter-name,object-name,enum-entry-name,max-line-length
+
+[*.xml]
+indent_size = 2

@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.romakost.trend_movie.movie_list.data.MovieData
+import com.romakost.trend_movie.movie_list.present.MovieItemViewState
 import com.romakost.trend_movie.movie_list.present.MovieListEffect
 import com.romakost.trend_movie.movie_list.present.MovieListEvent
 import com.romakost.trend_movie.movie_list.present.MovieListState
@@ -27,7 +27,7 @@ fun MovieListScreen(
     navController: NavController,
     state: MovieListState,
     effect: Flow<MovieListEffect>,
-    onEvent: (MovieListEvent) -> Unit
+    onEvent: (MovieListEvent) -> Unit,
 ) {
     LaunchedEffect(effect) {
         effect.collect { effect ->
@@ -46,18 +46,22 @@ fun MovieListScreen(
 
 @Composable
 private fun ContentState(
-    items: List<MovieData>,
-    onEvent: (MovieListEvent) -> Unit
+    items: List<MovieItemViewState>,
+    onEvent: (MovieListEvent) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
-        items(count = items.size) {
+        items(
+            count = items.size,
+            // TODO: for cutting corners use title as unique key
+            key = { items[it].title + items[it].isLiked },
+        ) {
             MovieItemView(
                 items[it],
-                onEvent
+                onEvent,
             )
         }
     }
@@ -69,10 +73,10 @@ fun LoadingState() {
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CircularProgressIndicator(modifier = Modifier.padding(bottom = 8.dp))
             Text(text = "Loading...")
@@ -86,7 +90,7 @@ fun ErrorState(message: String) {
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(message)
     }

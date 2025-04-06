@@ -30,7 +30,7 @@ class MovieDetailsVM
     }
 
     fun event(event: MovieDetailEvent) {
-        when(event) {
+        when (event) {
             is MovieDetailEvent.Back -> viewModelScope.launch { effect.send(MovieDetailEvent.Back) }
         }
     }
@@ -48,22 +48,22 @@ class MovieDetailsVM
     }
 
 /**
- * A helper setup for creating a `MovieDetailsVM` ViewModel instance using Dagger's `@AssistedInject`.
- *
- * This code facilitates assisted injection for ViewModel creation, allowing dependencies and runtime
- * arguments (e.g., `MovieDetailsArgs`) to be provided during ViewModel initialization.
- *
- * Usage Example:
- * ```
- * class MovieDetailsFragment : Fragment() {
- *     private val viewModel: MovieDetailsVM by viewModels {
- *         MovieDetailsVM.provideFactory(assistedFactory, args)
- *     }
- * }
- * ```
- */
+     * A helper setup for creating a `MovieDetailsVM` ViewModel instance using Dagger's `@AssistedInject`.
+     *
+     * This code facilitates assisted injection for ViewModel creation, allowing dependencies and runtime
+     * arguments (e.g., `MovieDetailsArgs`) to be provided during ViewModel initialization.
+     *
+     * Usage Example:
+     * ```
+     * class MovieDetailsFragment : Fragment() {
+     *     private val viewModel: MovieDetailsVM by viewModels {
+     *         MovieDetailsVM.provideFactory(assistedFactory, args)
+     *     }
+     * }
+     * ```
+     */
 
-@AssistedFactory
+    @AssistedFactory
     interface Factory {
         fun create(args: MovieDetailsArgs): MovieDetailsVM
     }
@@ -80,4 +80,3 @@ class MovieDetailsVM
         }
     }
 }
-

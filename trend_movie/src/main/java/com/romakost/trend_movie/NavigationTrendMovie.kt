@@ -29,6 +29,6 @@ fun NavGraphBuilder.navigateToTrendMovie(navController: NavController) {
 fun NavGraphBuilder.navigateToMovieDetail(navController: NavController) {
     composable<MovieDetailsArgs> { backStackEntry ->
         val args: MovieDetailsArgs = backStackEntry.toRoute()
-        MovieDetail(navController ,args)
+        MovieDetail(navController, args)
     }
 }

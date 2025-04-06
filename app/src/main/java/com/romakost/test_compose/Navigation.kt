@@ -25,7 +25,7 @@ import com.romakost.core.BottomNavigationItem
 import com.romakost.profile.navigateToProfile
 import com.romakost.trend_movie.navigateToMovieDetail
 import com.romakost.trend_movie.navigateToTrendMovie
-import com.romakost.tv_show.navigateToFavorites
+import com.romakost.favorites.navigateToFavorites
 
 @Composable
 fun BottomNavigation(navController: NavController) {
@@ -40,19 +40,22 @@ fun BottomNavigation(navController: NavController) {
     NavigationBar(
         modifier = Modifier
             .padding(16.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .heightIn(30.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .heightIn(90.dp)
     ) {
         bottomNavigationItems.forEach {
             NavigationBarItem(
                 selected = currentRoute == it.route,
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(36.dp),
                 icon = {
                     Icon(
                         imageVector = ImageVector.vectorResource(it.icon),
                         contentDescription = it.route,
                         modifier = Modifier
-                            .height(32.dp)
-                            .width(32.dp)
+                            .height(44.dp)
+                            .width(36.dp)
                     )
                 },
                 onClick = {
