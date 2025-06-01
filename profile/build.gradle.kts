@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("com.google.devtools.ksp") version "2.1.21-2.0.1"
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
 }
@@ -52,8 +52,7 @@ dependencies {
 
     //dagger-hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 
     implementation (libs.lifecycle.extensions)
     implementation(libs.hilt.navigation.compose)
