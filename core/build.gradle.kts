@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "2.1.21-2.0.1"
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
     id("org.jlleitschuh.gradle.ktlint")
@@ -46,12 +46,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    kapt {
-        correctErrorTypes = true
     }
 }
 
@@ -62,14 +59,12 @@ dependencies {
     // dagger-hilt
     implementation(libs.hilt.android)
     implementation(libs.ui.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-    implementation(libs.compose.bom.v20241100)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

@@ -1,7 +1,7 @@
 plugins {
+    id("com.google.devtools.ksp") version "2.1.21-2.0.1"
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
 }
@@ -50,16 +50,6 @@ android {
         compose = true
         buildConfig = true
     }
-
-    kapt {
-        correctErrorTypes = true
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
@@ -70,12 +60,10 @@ dependencies {
 
     //dagger-hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 
     implementation (libs.lifecycle.extensions)
     implementation(libs.hilt.navigation.compose)
-
     implementation(libs.core.splashscreen)
 
     // compose

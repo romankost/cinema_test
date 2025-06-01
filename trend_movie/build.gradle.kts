@@ -1,7 +1,9 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    // Uncomment if you need to use kapt-based annotation processing for Hilt:
+    // id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "2.1.21-2.0.1"
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "2.1.0"
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
@@ -61,11 +63,17 @@ dependencies {
     // coroutine
     implementation(libs.kotlinx.coroutines.android)
 
+    debugImplementation(libs.ui.tooling)
+
     // dagger-hilt
     implementation(libs.hilt.android)
-    debugImplementation(libs.ui.tooling)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
+
+    // vm
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.lifecycle.viewmodel.compose.android)
 
     implementation(libs.lifecycle.extensions)
     implementation(libs.hilt.navigation.compose)
