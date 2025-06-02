@@ -1,6 +1,5 @@
 package com.romakost.trend_movie.movie_details.present
 
-import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,16 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.romakost.core.ui.MovieThumbNail
 import com.romakost.core.ui.theme.CinemaAppTheme
 import com.romakost.trend_movie.movie_details.data.MovieDetailsArgs
-import com.romakost.trend_movie.movie_details.di.ViewModelFactoryProvider
 import com.romakost.trend_movie.movie_details.domain.MovieDetailsVM
 import com.romakost.trend_movie.shared.ui.RatingView
-import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.Flow
 
 @Composable
@@ -39,8 +36,15 @@ fun MovieDetail(
     navigation: NavController,
     args: MovieDetailsArgs
 ) {
-    val vm = MovieDetailsVM(args)
-    val state by vm.movieDetailsScreenState.collectAsStateWithLifecycle()
+
+    val vm: MovieDetailsVM = hiltViewModel(
+        creationCallback = { factory: MovieDetailsVM.Factory ->
+            factory.create(args = args)
+        }
+    )
+
+   val state by vm.movieDetailsScreenState.collectAsStateWithLifecycle()
+
     MovieDetailScreen(
         navController = navigation,
         state = state,
@@ -50,7 +54,7 @@ fun MovieDetail(
 }
 
 @Composable
-fun MovieDetailScreen(
+private fun MovieDetailScreen(
     navController: NavController,
     state: MovieDetailsState,
     effect: Flow<MovieDetailEvent>,
@@ -68,45 +72,54 @@ fun MovieDetailScreen(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        Box(modifier = Modifier.height(300.dp)) {
-            MovieThumbNail(
-                url = state.posterUrl,
-                desc = state.name,
-                modifier = Modifier
-                    .fillMaxHeight()
-            )
-            Column(
-                modifier = Modifier.fillMaxHeight(),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                IconButton(onClick = { onEvent(MovieDetailEvent.Back) }) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back")
-                }
-
-                Column(Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-                    RatingView(state.voteAverage)
-                    Text(
-                        state.name,
-                        Modifier.padding(vertical = 8.dp),
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                    Text(state.releaseDate)
-                }
-            }
-        }
-
-        Text(state.description, Modifier.padding(horizontal = 16.dp, vertical = 16.dp))
+        MovieHeader(state = state, onEvent = onEvent)
+        MovieContent(content = state.description)
     }
 }
 
 @Composable
-fun movieDetailsVM(args: MovieDetailsArgs): MovieDetailsVM {
-    val factory = EntryPointAccessors.fromActivity(
-        LocalContext.current as Activity,
-        ViewModelFactoryProvider::class.java
-    ).movieDetailsVMFactory()
+private fun MovieHeader(state: MovieDetailsState, onEvent: (MovieDetailEvent) -> Unit) {
+    Box(modifier = Modifier.height(300.dp)) {
+        MovieThumbNail(
+            url = state.posterUrl,
+            desc = state.name,
+            modifier = Modifier
+                .fillMaxHeight()
+        )
+        Column(
+            modifier = Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            IconButton(onClick = { onEvent(MovieDetailEvent.Back) }) {
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Navigate Back")
+            }
 
-    return viewModel(factory = MovieDetailsVM.provideFactory(factory, args))
+            Column(Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                RatingView(state.voteAverage)
+                MovieHeader(movieName = state.name)
+                ReleaseDateText(releaseDate = state.releaseDate)
+            }
+        }
+    }
+}
+
+@Composable
+private fun MovieContent(content: String, modifier: Modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
+    Text(content, modifier)
+}
+
+@Composable
+private fun ReleaseDateText(releaseDate: String) {
+    Text(releaseDate)
+}
+
+@Composable
+private fun MovieHeader(movieName: String) {
+    Text(
+        movieName,
+        Modifier.padding(vertical = 8.dp),
+        style = MaterialTheme.typography.headlineMedium
+    )
 }
 
 @Preview(name = "Light Mode")

@@ -34,7 +34,7 @@ fun FavoritesScreen(
 ) {
     when {
         state.isNoFavorite -> NoFavoritesItemState()
-        else -> FavoritesItemState(
+        else -> FavoritesItemList(
             state = state,
             onEvent = onEvent
         )
@@ -42,16 +42,15 @@ fun FavoritesScreen(
 }
 
 @Composable
-fun FavoritesItemState(state: FavoritesState, onEvent: (FavoritesEvent) -> Unit) {
+private fun FavoritesItemList(
+    state: FavoritesState,
+    onEvent: (FavoritesEvent) -> Unit
+) {
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
-        Button(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 26.dp),
-            onClick = { onEvent(FavoritesEvent.ClearAll) }
-        ) {
-            Text(stringResource(R.string.clear_all))
-        }
+        ClearAll(onEvent = onEvent)
+
         LazyColumn {
             items(count = state.favorites.size) {
                 FavoritesItem(state.favorites[it], onEvent)
@@ -61,7 +60,17 @@ fun FavoritesItemState(state: FavoritesState, onEvent: (FavoritesEvent) -> Unit)
 }
 
 @Composable
-fun FavoritesItem(item: FavoritesEntity, onEvent: (FavoritesEvent) -> Unit) {
+private fun ClearAll(onEvent: (FavoritesEvent) -> Unit) {
+    Button(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 26.dp),
+        onClick = { onEvent(FavoritesEvent.ClearAll) }
+    ) {
+        Text(stringResource(R.string.clear_all))
+    }
+}
+
+@Composable
+private fun FavoritesItem(item: FavoritesEntity, onEvent: (FavoritesEvent) -> Unit) {
     Box(
         modifier = Modifier
             .padding(vertical = 8.dp)
@@ -84,7 +93,7 @@ fun FavoritesItem(item: FavoritesEntity, onEvent: (FavoritesEvent) -> Unit) {
 }
 
 @Composable
-fun NoFavoritesItemState() {
+private fun NoFavoritesItemState() {
     Box(
         modifier = Modifier
             .fillMaxHeight()

@@ -27,8 +27,6 @@ import com.romakost.trend_movie.movie_list.present.MovieItemViewState
 import com.romakost.trend_movie.movie_list.present.MovieListEvent
 import com.romakost.trend_movie.shared.ui.RatingView
 
-const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
-
 @Composable
 fun MovieItemView(data: MovieItemViewState, onEvent: (MovieListEvent) -> Unit) {
     Box(

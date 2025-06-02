@@ -68,7 +68,7 @@ private fun ContentState(
 }
 
 @Composable
-fun LoadingState() {
+private fun LoadingState() {
     Box(
         modifier = Modifier
             .fillMaxHeight()
@@ -85,7 +85,7 @@ fun LoadingState() {
 }
 
 @Composable
-fun ErrorState(message: String) {
+private fun ErrorState(message: String) {
     Box(
         modifier = Modifier
             .fillMaxHeight()
