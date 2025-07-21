@@ -5,19 +5,19 @@ import com.romakost.network.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 const val BASE_URL = "https://api.themoviedb.org/3/"
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 class NetworkModule {
 
-    @Singleton
+    @ActivityRetainedScoped
     @Provides
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
@@ -34,7 +34,7 @@ class NetworkModule {
             .build()
     }
 
-    @Singleton
+    @ActivityRetainedScoped
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()

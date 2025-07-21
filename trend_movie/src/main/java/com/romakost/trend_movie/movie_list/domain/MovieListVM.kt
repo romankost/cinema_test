@@ -3,18 +3,20 @@ package com.romakost.trend_movie.movie_list.domain
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romakost.core.ResourceManager
+import com.romakost.core.navigation.Navigator
 import com.romakost.core.network.NetworkResult
 import com.romakost.favorites.data.FavoriteMovieRepo
 import com.romakost.favorites.data.db.FavoritesEntity
 import com.romakost.trend_movie.R
+import com.romakost.trend_movie.di.TrendMovieDetail
 import com.romakost.trend_movie.movie_details.data.MovieDetailsArgs
 import com.romakost.trend_movie.movie_list.data.TrendingMovieData
 import com.romakost.trend_movie.movie_list.data.network.MovieRepoImpl
 import com.romakost.trend_movie.movie_list.data.toMovieItemViewState
-import com.romakost.trend_movie.movie_list.present.MovieItemViewState
-import com.romakost.trend_movie.movie_list.present.MovieListEffect
-import com.romakost.trend_movie.movie_list.present.MovieListEvent
-import com.romakost.trend_movie.movie_list.present.MovieListState
+import com.romakost.trend_movie.movie_list.presentation.MovieItemViewState
+import com.romakost.trend_movie.movie_list.presentation.MovieListEffect
+import com.romakost.trend_movie.movie_list.presentation.MovieListEvent
+import com.romakost.trend_movie.movie_list.presentation.MovieListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +26,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Named
 
 @HiltViewModel
 class MovieListVM
@@ -31,6 +34,8 @@ class MovieListVM
     private val movieRepo: MovieRepoImpl,
     private val resourceManager: ResourceManager,
     private val favoritesRepo: FavoriteMovieRepo,
+    @Named("MovieListNavigator")
+    private val navigation: Navigator
 ) : ViewModel() {
     private val state = MutableStateFlow(MovieListState.initState)
     val movieListScreenState = state.asStateFlow()
@@ -50,19 +55,15 @@ class MovieListVM
     }
 
     private fun handleMovieItemClick(movieData: MovieItemViewState) {
-        viewModelScope.launch {
-            effect.send(
-                MovieListEffect.NavigateToShowDetail(
-                    MovieDetailsArgs(
-                        name = movieData.title,
-                        description = movieData.overview,
-                        posterUrl = movieData.posterPath,
-                        voteAverage = movieData.voteAverage,
-                        releaseDate = movieData.releaseDate,
-                    ),
-                ),
-            )
-        }
+        val args = MovieDetailsArgs(
+            name = movieData.title,
+            description = movieData.overview,
+            posterUrl = movieData.posterPath,
+            voteAverage = movieData.voteAverage,
+            releaseDate = movieData.releaseDate,
+        )
+
+        navigation.goTo(TrendMovieDetail(args = args))
     }
 
     /**

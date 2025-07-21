@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.romakost.trend_movie"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -60,8 +60,14 @@ dependencies {
 
     // coroutine
     implementation(libs.kotlinx.coroutines.android)
-
     debugImplementation(libs.ui.tooling)
+
+    // navigation
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+    implementation(libs.androidx.material3.adaptive.navigation3)
+    implementation(libs.kotlinx.serialization.core)
 
     // dagger-hilt
     implementation(libs.hilt.android)

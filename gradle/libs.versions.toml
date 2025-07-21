@@ -2,7 +2,7 @@
 agp = "8.3.2"
 googleHiltCompiler = "2.51.2"
 hiltCompilerVersion = "2.51.1"
-kotlin = "2.1.20"
+kotlin = "2.2.0"
 activityCompose = "1.9.3"
 appcompat = "1.7.0"
 coilCompose = "2.5.0"
@@ -12,7 +12,7 @@ coreKtx = "1.15.0"
 coreSplashscreen = "1.0.1"
 espressoCore = "3.6.1"
 hiltAndroid = "2.56.2"
-hiltAndroidCompiler = "2.56.1"
+hiltAndroidCompiler = "2.56.2"
 hiltCompiler = "1.2.0"
 junit = "4.13.2"
 junitKtx = "1.2.1"
@@ -36,8 +36,14 @@ uiAndroid = "1.7.6"
 uiTooling = "1.7.6"
 uiToolingPreview = "1.8.0-alpha07"
 compose = "2.0.20"
-hiltDagger = "2.56.1"
+hiltDagger = "2.56.2"
 uiToolingVersion = "1.7.8"
+
+nav3Core = "1.0.0-alpha05"
+lifecycleViewmodelNav3 = "1.0.0-alpha03"
+kotlinSerialization = "2.1.21"
+kotlinxSerializationCore = "1.8.1"
+material3AdaptiveNav3 = "1.0.0-SNAPSHOT"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -85,7 +91,21 @@ ui-android = { module = "androidx.compose.ui:ui-android", version.ref = "uiAndro
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiToolingVersion" }
 
+# Core Navigation 3 libraries
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+
+# Optional add-on libraries
+androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+
+# Note: The Material3 adaptive layouts library for Navigation 3 is currently
+# only available in snapshot builds. Follow the instructions at androidx.dev to
+# add the snapshot builds repository to your project.
+androidx-material3-adaptive-navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "material3AdaptiveNav3" }
+
 [plugins]
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsKotlinPluginCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "compose" }

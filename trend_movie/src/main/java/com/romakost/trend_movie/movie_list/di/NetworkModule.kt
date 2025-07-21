@@ -4,10 +4,10 @@ import com.romakost.trend_movie.movie_list.data.network.TMDBApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ActivityRetainedComponent
 import retrofit2.Retrofit
 
-@InstallIn(SingletonComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 @Module
 class TrendMovieNetwork {
 

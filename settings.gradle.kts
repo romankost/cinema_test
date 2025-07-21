@@ -1,8 +1,17 @@
 pluginManagement {
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            url = uri("https://androidx.dev/snapshots/builds/13617490/artifacts/repository")
+        }
     }
 
 }
@@ -11,6 +20,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://androidx.dev/snapshots/builds/13617490/artifacts/repository")
+        }
     }
 }
 
@@ -20,3 +32,4 @@ include(":trend_movie")
 include(":profile")
 include(":favorites")
 include(":core")
+include(":home")

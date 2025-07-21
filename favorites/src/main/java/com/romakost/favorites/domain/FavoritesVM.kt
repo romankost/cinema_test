@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.romakost.favorites.data.FavoriteMovieRepo
 import com.romakost.favorites.data.db.FavoritesEntity
-import com.romakost.favorites.present.FavoritesEvent
-import com.romakost.favorites.present.FavoritesState
+import com.romakost.favorites.presentation.FavoritesEvent
+import com.romakost.favorites.presentation.FavoritesState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

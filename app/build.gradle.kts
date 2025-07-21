@@ -4,11 +4,13 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+
 }
 
 android {
     namespace = "com.romakost.test_compose"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.romakost.test_compose"
@@ -53,8 +55,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":favorites"))
     implementation(project(":core"))
+
+    implementation(project(":home"))
+    implementation(project(":favorites"))
     implementation(project(":trend_movie"))
     implementation(project(":profile"))
 
@@ -63,8 +67,15 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     implementation (libs.lifecycle.extensions)
-    implementation(libs.hilt.navigation.compose)
     implementation(libs.core.splashscreen)
+
+    // navigation
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+    implementation(libs.androidx.material3.adaptive.navigation3)
+    implementation(libs.kotlinx.serialization.core)
 
     // compose
     implementation(libs.navigation.compose)

@@ -3,10 +3,10 @@ package com.romakost.core
 import android.content.Context
 import androidx.annotation.StringRes
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@ActivityRetainedScoped
 class ResourceManager @Inject constructor(
     @ApplicationContext
     private val ctx: Context

@@ -1,7 +1,7 @@
 package com.romakost.trend_movie.movie_list.data
 
 import com.romakost.core.toOneSymbolSting
-import com.romakost.trend_movie.movie_list.present.MovieItemViewState
+import com.romakost.trend_movie.movie_list.presentation.MovieItemViewState
 
 fun TrendingMovieData.toMovieItemViewState(isLiked: Boolean = false) =
     MovieItemViewState(
