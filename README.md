@@ -1,38 +1,28 @@
-# Cinema 
+# Cinema: Code Sample
 
-A mobile application designed as a playground for exploring best practices and modern architecture approaches in Android development.
+This repository contains sample code. Its purpose being, to quickly demonstrate Android with fully Compose Project and software development in general. More so and amongst others, the main focus of this project is:
+- Jetpack Compose
+- Gradle modularization
+- Clean architecture
+- Clean code principles
+- Android best practices
 
-![record](https://github.com/user-attachments/assets/774e12a4-58d9-4e38-9a59-adbcbeaa3860)
+## Project Structure
+<img width="571" height="335" alt="ProjectStructure" src="https://github.com/user-attachments/assets/a7545298-0256-4b44-90d5-54a58b933610" />
 
-### Work estimates - 12h  
 
-## Development
-• Clean Architecture
-
-• Multy-module structure
-
-• Jetpack Compose
-
-• Compose Navigation
-
-• MVI
-
-• DI with Hilt 
-
-• Custom Retrofit Adapters 
-
-• Coil
+## Tech Stack
+- **Architectural Patterns:** Modularization, Clean Architecture, MVI
+- **Kotlin:** Coroutines, Flow
+- **DI:** Hilt
+- **UI:** Jetpack Compose, Material Design 3, Coil
+- **Navigation:** Jetpack Navigation 3
+- **Network:** Retrofit with custom adapters, Gson
+- **DB:** Room
 
 ## TODO:
-• Optimize gradle dependencies 
-
-• Add room for favorites feature
-
-• Add login with Google
-
-• Add language options 
-
-• Add Light Theme 
-
-• Add additional movie details  
+- [ ] Add AI-based movie suggestion feature  
+- [ ] Add pagination to the movie list screen  
+- [ ] Add light UI theme  
+- [ ] Add GitHub Actions CI pipelines  
 
